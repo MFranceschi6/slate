@@ -1,736 +1,888 @@
----
-title: BeepBeep Data Service
-language_tabs:
-  - python: Python
-toc_footers: []
-includes: []
-search: true
-highlight_theme: darkula
-headingLevel: 2
-
----
-
-<h1 id="beepbeep-data-service">BeepBeep Data Service v0.1.9</h1>
-
-> Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
-
-Returns info about BeepBeep registered users and their runs
-
-Base URLs:
-
-* <a href="0.0.0.0:5002">0.0.0.0:5002</a>
-
-License: <a href="https://www.apache.org/licenses/LICENSE-2.0.html">APLv2</a>
-
-<h1 id="beepbeep-data-service-default">Default</h1>
-
-## getRuns
-
-<a id="opIdgetRuns"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json'
-}
-
-r = requests.get('0.0.0.0:5002/runs/{runner_id}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-`GET /runs/{runner_id}`
-
-Get all the run of an user with respect to some criteria
-
-<h3 id="getruns-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|runner_id|path|integer|true|ID of Runner|
-|start-date|query|string(date)|false|If this parameter is set all the runs returned will have a start_date not less than date-start|
-|finish-date|query|string(date)|false|If this parameter is set all the runs returned will have a start_date not greater than date-finish|
-
-> Example responses
-
-> 200 Response
-
-```json
-[
-  {
-    "id": 0,
-    "title": "string",
-    "description": "string",
-    "strava_id": 0,
-    "distance": 0,
-    "start_date": 0,
-    "elapsed_time": 0,
-    "average_speed": 0,
-    "total_elevation_gain": 0,
-    "runner_id": 0
-  }
-]
-```
-
-<h3 id="getruns-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|A, possibly empty, list of runs|Inline|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Something went wrong trying to parse the request|[Error](#schemaerror)|
-
-<h3 id="getruns-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|*anonymous*|[allOf]|false|none|none|
-
-*allOf*
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
-|»» id|integer|true|none|The ID of the run.|
-
-*and*
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[Run](#schemarun)|false|none|none|
-|»» title|string|true|none|A title for the run|
-|»» description|string|true|none|A more detailed description for the run|
-|»» strava_id|integer|true|none|The id of the run when fetched from Strava|
-|»» distance|number(float)|true|none|The distance the user run expressed in meters|
-|»» start_date|integer(timestamp)|true|none|The timestamp when this run was made|
-|»» elapsed_time|integer|true|none|The total time that this run took to complete|
-|»» average_speed|number(float)|true|none|The average speed of the run|
-|»» total_elevation_gain|number(float)|true|none|The total elevation gained during the run|
-|»» runner_id|integer|false|none|The id of the user who made this run|
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-## addRuns
-
-<a id="opIdaddRuns"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json'
-}
-
-r = requests.post('0.0.0.0:5002/add_runs', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-`POST /add_runs`
-
-Adds a bunch of runs to different users
-
-> Body parameter
-
-```json
-{
-  "property1": [
-    {
-      "title": "string",
-      "description": "string",
-      "strava_id": 0,
-      "distance": 0,
-      "start_date": 0,
-      "elapsed_time": 0,
-      "average_speed": 0,
-      "total_elevation_gain": 0,
-      "runner_id": 0
-    }
-  ],
-  "property2": [
-    {
-      "title": "string",
-      "description": "string",
-      "strava_id": 0,
-      "distance": 0,
-      "start_date": 0,
-      "elapsed_time": 0,
-      "average_speed": 0,
-      "total_elevation_gain": 0,
-      "runner_id": 0
-    }
-  ]
-}
-```
-
-<h3 id="addruns-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|An object of array of objects that describe all the runs of some users|
-|» **additionalProperties**|body|[[Run](#schemarun)]|false|none|
-|»» title|body|string|true|A title for the run|
-|»» description|body|string|true|A more detailed description for the run|
-|»» strava_id|body|integer|true|The id of the run when fetched from Strava|
-|»» distance|body|number(float)|true|The distance the user run expressed in meters|
-|»» start_date|body|integer(timestamp)|true|The timestamp when this run was made|
-|»» elapsed_time|body|integer|true|The total time that this run took to complete|
-|»» average_speed|body|number(float)|true|The average speed of the run|
-|»» total_elevation_gain|body|number(float)|true|The total elevation gained during the run|
-|»» runner_id|body|integer|false|The id of the user who made this run|
-
-<h3 id="addruns-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|The runs were added succesfully|None|
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-## getUsers
-
-<a id="opIdgetUsers"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json'
-}
-
-r = requests.get('0.0.0.0:5002/users', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-`GET /users`
-
-Returns the list of all the users
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "users": [
-    {
-      "id": 0,
-      "email": "user@example.com",
-      "firstname": "string",
-      "lastname": "string",
-      "strava_token": "string",
-      "age": 0,
-      "weight": 0,
-      "max_hr": 0,
-      "rest_hr": 0,
-      "vo2max": 0
-    }
-  ]
-}
-```
-
-<h3 id="getusers-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|A, possibly empty, list of users|Inline|
-
-<h3 id="getusers-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» users|[allOf]|false|none|none|
-
-*allOf*
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|»» *anonymous*|object|false|none|none|
-|»»» id|integer|true|none|the ID of the user|
-
-*and*
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|»» *anonymous*|[UserTemplate](#schemausertemplate)|false|none|none|
-|»»» email|string(email)|true|none|The email of the user|
-|»»» firstname|string|true|none|The firstname of the user|
-|»»» lastname|string|true|none|The lastname of the user|
-|»»» strava_token|string|false|none|The strava_token of the user|
-|»»» age|integer|true|none|The age of the user|
-|»»» weight|number(float)|true|none|The weight of the user|
-|»»» max_hr|integer|true|none|The max heartrate of the user|
-|»»» rest_hr|integer|true|none|The at rest heartrate of the user|
-|»»» vo2max|number(float)|true|none|I have no clue what this is|
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-## addUser
-
-<a id="opIdaddUser"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-r = requests.post('0.0.0.0:5002/users', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-`POST /users`
-
-Register a new User inside the Data Service
-
-> Body parameter
-
-```json
-{
-  "id": 0,
-  "email": "user@example.com",
-  "firstname": "string",
-  "lastname": "string",
-  "strava_token": "string",
-  "age": 0,
-  "weight": 0,
-  "max_hr": 0,
-  "rest_hr": 0,
-  "vo2max": 0
-}
-```
-
-<h3 id="adduser-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[User](#schemauser)|true|The description of the new User to add into the DataService|
-
-> Example responses
-
-> 400 Response
-
-```json
-{
-  "response-code": 0,
-  "message": "string"
-}
-```
-
-<h3 id="adduser-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|The user was added succesfully|None|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Something went wrong trying to parse the request|[Error](#schemaerror)|
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-## getSingleUser
-
-<a id="opIdgetSingleUser"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json'
-}
-
-r = requests.get('0.0.0.0:5002/user/{user_id}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-`GET /user/{user_id}`
-
-Returns a specific User
-
-<h3 id="getsingleuser-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|user_id|path|integer|true|The id of the user|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "id": 0,
-  "email": "user@example.com",
-  "firstname": "string",
-  "lastname": "string",
-  "strava_token": "string",
-  "age": 0,
-  "weight": 0,
-  "max_hr": 0,
-  "rest_hr": 0,
-  "vo2max": 0
-}
-```
-
-<h3 id="getsingleuser-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Information about an User|[ExistingUser](#schemaexistinguser)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|The specified resource was not found|[Error](#schemaerror)|
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-## updateSingleUser
-
-<a id="opIdupdateSingleUser"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-r = requests.put('0.0.0.0:5002/user/{user_id}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-`PUT /user/{user_id}`
-
-Update the information of a single User
-
-> Body parameter
-
-```json
-{
-  "id": 0,
-  "email": "user@example.com",
-  "firstname": "string",
-  "lastname": "string",
-  "strava_token": "string",
-  "age": 0,
-  "weight": 0,
-  "max_hr": 0,
-  "rest_hr": 0,
-  "vo2max": 0
-}
-```
-
-<h3 id="updatesingleuser-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[ExistingUser](#schemaexistinguser)|true|The description of the update information of the User|
-|user_id|path|integer|true|The id of the user|
-
-> Example responses
-
-> 400 Response
-
-```json
-{
-  "response-code": 0,
-  "message": "string"
-}
-```
-
-<h3 id="updatesingleuser-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|User succesfully updated|None|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Something went wrong trying to parse the request|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|The specified resource was not found|[Error](#schemaerror)|
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-## deleteSingleUser
-
-<a id="opIddeleteSingleUser"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json'
-}
-
-r = requests.delete('0.0.0.0:5002/user/{user_id}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-`DELETE /user/{user_id}`
-
-Remove an User from the service
-
-<h3 id="deletesingleuser-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|user_id|path|integer|true|The id of the user|
-
-> Example responses
-
-> 404 Response
-
-```json
-{
-  "response-code": 0,
-  "message": "string"
-}
-```
-
-<h3 id="deletesingleuser-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|User succesfully removed|None|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|The specified resource was not found|[Error](#schemaerror)|
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-# Schemas
-
-<h2 id="tocSrun">Run</h2>
-
-<a id="schemarun"></a>
-
-```json
-{
-  "title": "string",
-  "description": "string",
-  "strava_id": 0,
-  "distance": 0,
-  "start_date": 0,
-  "elapsed_time": 0,
-  "average_speed": 0,
-  "total_elevation_gain": 0,
-  "runner_id": 0
-}
-
-```
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|title|string|true|none|A title for the run|
-|description|string|true|none|A more detailed description for the run|
-|strava_id|integer|true|none|The id of the run when fetched from Strava|
-|distance|number(float)|true|none|The distance the user run expressed in meters|
-|start_date|integer(timestamp)|true|none|The timestamp when this run was made|
-|elapsed_time|integer|true|none|The total time that this run took to complete|
-|average_speed|number(float)|true|none|The average speed of the run|
-|total_elevation_gain|number(float)|true|none|The total elevation gained during the run|
-|runner_id|integer|false|none|The id of the user who made this run|
-
-<h2 id="tocSresponserun">ResponseRun</h2>
-
-<a id="schemaresponserun"></a>
-
-```json
-{
-  "id": 0,
-  "title": "string",
-  "description": "string",
-  "strava_id": 0,
-  "distance": 0,
-  "start_date": 0,
-  "elapsed_time": 0,
-  "average_speed": 0,
-  "total_elevation_gain": 0,
-  "runner_id": 0
-}
-
-```
-
-### Properties
-
-*allOf*
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|*anonymous*|object|false|none|none|
-|» id|integer|true|none|The ID of the run.|
-
-*and*
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|*anonymous*|[Run](#schemarun)|false|none|none|
-
-<h2 id="tocSusertemplate">UserTemplate</h2>
-
-<a id="schemausertemplate"></a>
-
-```json
-{
-  "email": "user@example.com",
-  "firstname": "string",
-  "lastname": "string",
-  "strava_token": "string",
-  "age": 0,
-  "weight": 0,
-  "max_hr": 0,
-  "rest_hr": 0,
-  "vo2max": 0
-}
-
-```
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|email|string(email)|true|none|The email of the user|
-|firstname|string|true|none|The firstname of the user|
-|lastname|string|true|none|The lastname of the user|
-|strava_token|string|false|none|The strava_token of the user|
-|age|integer|true|none|The age of the user|
-|weight|number(float)|true|none|The weight of the user|
-|max_hr|integer|true|none|The max heartrate of the user|
-|rest_hr|integer|true|none|The at rest heartrate of the user|
-|vo2max|number(float)|true|none|I have no clue what this is|
-
-<h2 id="tocSexistinguser">ExistingUser</h2>
-
-<a id="schemaexistinguser"></a>
-
-```json
-{
-  "id": 0,
-  "email": "user@example.com",
-  "firstname": "string",
-  "lastname": "string",
-  "strava_token": "string",
-  "age": 0,
-  "weight": 0,
-  "max_hr": 0,
-  "rest_hr": 0,
-  "vo2max": 0
-}
-
-```
-
-### Properties
-
-*allOf*
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|*anonymous*|object|false|none|none|
-|» id|integer|true|none|the ID of the user|
-
-*and*
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|*anonymous*|[UserTemplate](#schemausertemplate)|false|none|none|
-
-<h2 id="tocSuser">User</h2>
-
-<a id="schemauser"></a>
-
-```json
-{
-  "id": 0,
-  "email": "user@example.com",
-  "firstname": "string",
-  "lastname": "string",
-  "strava_token": "string",
-  "age": 0,
-  "weight": 0,
-  "max_hr": 0,
-  "rest_hr": 0,
-  "vo2max": 0
-}
-
-```
-
-### Properties
-
-*allOf*
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|*anonymous*|object|false|none|none|
-|» id|integer|false|none|the ID of the user|
-
-*and*
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|*anonymous*|[UserTemplate](#schemausertemplate)|false|none|none|
-
-<h2 id="tocSerror">Error</h2>
-
-<a id="schemaerror"></a>
-
-```json
-{
-  "response-code": 0,
-  "message": "string"
-}
-
-```
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|response-code|integer|true|none|The code of the HTTP response error|
-|message|string|true|none|Additional description about the error|
-
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ @MFranceschi6 Sign out
+12
+347 113 Mermade/widdershins
+ Code  Issues 19  Pull requests 4  Projects 0  Wiki  Insights
+widdershins/defs/redoc3.yaml
+e30b1c2  on Nov 30, 2017
+@MikeRalphson MikeRalphson Prep for v3 release
+     
+878 lines (858 sloc)  23.3 KB
+openapi: 3.0.0-RC2
+servers:
+  - url: 'http://petstore.swagger.io/v2'
+  - url: 'https://petstore.swagger.io/v2'
+info:
+  description: >
+    This is a sample server Petstore server.
+    You can find out more about Swagger at
+    [http://swagger.io](http://swagger.io) or on [irc.freenode.net,
+    #swagger](http://swagger.io/irc/).
+    For this sample, you can use the api key `special-key` to test the
+    authorization filters.
+    # Introduction
+    This API is documented in **OpenAPI format** and is based on
+    [Petstore sample](http://petstore.swagger.io/) provided by
+    [swagger.io](http://swagger.io) team.
+    It was **extended** to illustrate features of
+    [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)
+    tool and [ReDoc](https://github.com/Rebilly/ReDoc) documentation. In
+    addition to standard
+    OpenAPI syntax we use a few [vendor
+    extensions](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md).
+    # OpenAPI Specification
+    This API is documented in **OpenAPI format** and is based on
+    [Petstore sample](http://petstore.swagger.io/) provided by
+    [swagger.io](http://swagger.io) team.
+    It was **extended** to illustrate features of
+    [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)
+    tool and [ReDoc](https://github.com/Rebilly/ReDoc) documentation. In
+    addition to standard
+    OpenAPI syntax we use a few [vendor
+    extensions](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md).
+    # Cross-Origin Resource Sharing
+    This API features Cross-Origin Resource Sharing (CORS) implemented in
+    compliance with  [W3C spec](https://www.w3.org/TR/cors/).
+    And that allows cross-domain communication from the browser.
+    All responses have a wildcard same-origin which makes them completely public
+    and accessible to everyone, including any code on any site.
+  version: 1.0.0
+  title: Swagger Petstore
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: apiteam@swagger.io
+  x-logo:
+    url: 'https://rebilly.github.io/ReDoc/petstore-logo.png'
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+externalDocs:
+  description: Find out how to create Github repo for your OpenAPI spec.
+  url: 'https://github.com/Rebilly/generator-openapi-repo'
+tags:
+  - name: pet
+    description: Everything about your Pets
+  - name: store
+    description: Access to Petstore orders
+  - name: user
+    description: Operations about user
+paths:
+  /pet:
+    post:
+      tags:
+        - pet
+      summary: Add a new pet to the store
+      description: Add new pet to the store inventory.
+      operationId: addPet
+      parameters: []
+      responses:
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+      x-code-samples:
+        - lang: 'C#'
+          source: |
+            PetStore.v1.Pet pet = new PetStore.v1.Pet();
+            pet.setApiKey("your api key");
+            pet.petType = PetStore.v1.Pet.TYPE_DOG;
+            pet.name = "Rex";
+            // set other fields
+            PetStoreResponse response = pet.create();
+            if (response.statusCode == HttpStatusCode.Created)
+            {
+              // Successfully created
+            }
+            else
+            {
+              // Something wrong -- check response for errors
+              Console.WriteLine(response.getRawResponse());
+            }
+        - lang: PHP
+          source: |
+            $form = new \PetStore\Entities\Pet();
+            $form->setPetType("Dog");
+            $form->setName("Rex");
+            // set other fields
+            try {
+                $pet = $client->pets()->create($form);
+            } catch (UnprocessableEntityException $e) {
+                var_dump($e->getErrors());
+            }
+      requestBody:
+        $ref: '#/components/requestBodies/Pet'
+    put:
+      tags:
+        - pet
+      summary: Update an existing pet
+      description: ''
+      operationId: updatePet
+      parameters: []
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+        '405':
+          description: Validation exception
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+      x-code-samples:
+        - lang: PHP
+          source: |
+            $form = new \PetStore\Entities\Pet();
+            $form->setPetId(1);
+            $form->setPetType("Dog");
+            $form->setName("Rex");
+            // set other fields
+            try {
+                $pet = $client->pets()->update($form);
+            } catch (UnprocessableEntityException $e) {
+                var_dump($e->getErrors());
+            }
+      requestBody:
+        $ref: '#/components/requestBodies/Pet'
+  '/pet/{petId}':
+    get:
+      tags:
+        - pet
+      summary: Find pet by ID
+      description: Returns a single pet
+      operationId: getPetById
+      parameters:
+        - name: petId
+          in: path
+          description: ID of pet to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Pet'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+      security:
+        - api_key: []
+    post:
+      tags:
+        - pet
+      summary: Updates a pet in the store with form data
+      description: ''
+      operationId: updatePetWithForm
+      parameters:
+        - name: petId
+          in: path
+          description: ID of pet that needs to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: Updated name of the pet
+                  type: string
+                status:
+                  description: Updated status of the pet
+                  type: string
+    delete:
+      tags:
+        - pet
+      summary: Deletes a pet
+      description: ''
+      operationId: deletePet
+      parameters:
+        - name: api_key
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: petId
+          in: path
+          description: Pet id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Invalid pet value
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+  '/pet/{petId}/uploadImage':
+    post:
+      tags:
+        - pet
+      summary: uploads an image
+      description: ''
+      operationId: uploadFile
+      parameters:
+        - name: petId
+          in: path
+          description: ID of pet to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+  /pet/findByStatus:
+    get:
+      tags:
+        - pet
+      summary: Finds Pets by status
+      description: Multiple status values can be provided with comma seperated strings
+      operationId: findPetsByStatus
+      parameters:
+        - name: status
+          in: query
+          description: Status values that need to be considered for filter
+          required: true
+          style: form
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - available
+                - pending
+                - sold
+              default: available
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pet'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid status value
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+  /pet/findByTags:
+    get:
+      tags:
+        - pet
+      summary: Finds Pets by tags
+      description: >-
+        Muliple tags can be provided with comma seperated strings. Use tag1,
+        tag2, tag3 for testing.
+      operationId: findPetsByTags
+      parameters:
+        - name: tags
+          in: query
+          description: Tags to filter by
+          required: true
+          style: form
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pet'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid tag value
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+  /store/inventory:
+    get:
+      tags:
+        - store
+      summary: Returns pet inventories by status
+      description: Returns a map of status codes to quantities
+      operationId: getInventory
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+                  format: int32
+      security:
+        - api_key: []
+  /store/order:
+    post:
+      tags:
+        - store
+      summary: Place an order for a pet
+      description: ''
+      operationId: placeOrder
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Order'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: Invalid Order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+        description: order placed for purchasing the pet
+  '/store/order/{orderId}':
+    get:
+      tags:
+        - store
+      summary: Find purchase order by ID
+      description: >-
+        For valid response try integer IDs with value <= 5 or > 10. Other values
+        will generated exceptions
+      operationId: getOrderById
+      parameters:
+        - name: orderId
+          in: path
+          description: ID of pet that needs to be fetched
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+            maximum: 5
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Order'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Order not found
+    delete:
+      tags:
+        - store
+      summary: Delete purchase order by ID
+      description: >-
+        For valid response try integer IDs with value < 1000. Anything above
+        1000 or nonintegers will generate API errors
+      operationId: deleteOrder
+      parameters:
+        - name: orderId
+          in: path
+          description: ID of the order that needs to be deleted
+          required: true
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Order not found
+  /user:
+    post:
+      tags:
+        - user
+      summary: Create user
+      description: This can only be done by the logged in user.
+      operationId: createUser
+      parameters: []
+      responses:
+        default:
+          description: successful operation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: Created user object
+  '/user/{username}':
+    get:
+      tags:
+        - user
+      summary: Get user by user name
+      description: ''
+      operationId: getUserByName
+      parameters:
+        - name: username
+          in: path
+          description: 'The name that needs to be fetched. Use user1 for testing. '
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+    put:
+      tags:
+        - user
+      summary: Updated user
+      description: This can only be done by the logged in user.
+      operationId: updateUser
+      parameters:
+        - name: username
+          in: path
+          description: name that need to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid user supplied
+        '404':
+          description: User not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: Updated user object
+    delete:
+      tags:
+        - user
+      summary: Delete user
+      description: This can only be done by the logged in user.
+      operationId: deleteUser
+      parameters:
+        - name: username
+          in: path
+          description: The name that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+  /user/createWithArray:
+    post:
+      tags:
+        - user
+      summary: Creates list of users with given input array
+      description: ''
+      operationId: createUsersWithArrayInput
+      parameters: []
+      responses:
+        default:
+          description: successful operation
+      requestBody:
+        $ref: '#/components/requestBodies/UserArray'
+  /user/createWithList:
+    post:
+      tags:
+        - user
+      summary: Creates list of users with given input array
+      description: ''
+      operationId: createUsersWithListInput
+      parameters: []
+      responses:
+        default:
+          description: successful operation
+      requestBody:
+        $ref: '#/components/requestBodies/UserArray'
+  /user/login:
+    get:
+      tags:
+        - user
+      summary: Logs user into the system
+      description: ''
+      operationId: loginUser
+      parameters:
+        - name: username
+          in: query
+          description: The user name for login
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: query
+          description: The password for login in clear text
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              schema:
+                type: integer
+                format: int32
+            X-Expires-After:
+              description: date in UTC when toekn expires
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/xml:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+              examples:
+                response:
+                  value: OK
+        '400':
+          description: Invalid username/password supplied
+  /user/logout:
+    get:
+      tags:
+        - user
+      summary: Logs out current logged in user session
+      description: ''
+      operationId: logoutUser
+      parameters: []
+      responses:
+        default:
+          description: successful operation
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+    Cat:
+      description: A representation of a cat
+      allOf:
+        - $ref: '#/components/schemas/Pet'
+        - type: object
+          properties:
+            huntingSkill:
+              type: string
+              description: The measured skill for hunting
+              default: lazy
+              enum:
+                - clueless
+                - lazy
+                - adventurous
+                - aggressive
+          required:
+            - huntingSkill
+    Category:
+      type: object
+      properties:
+        id:
+          description: Category ID
+          allOf:
+            - $ref: '#/components/schemas/Id'
+        name:
+          description: Category name
+          type: string
+          minLength: 1
+      xml:
+        name: Category
+    Dog:
+      description: A representation of a dog
+      allOf:
+        - $ref: '#/components/schemas/Pet'
+        - type: object
+          properties:
+            packSize:
+              type: integer
+              format: int32
+              description: The size of the pack the dog is from
+              default: 1
+              minimum: 1
+          required:
+            - packSize
+    HoneyBee:
+      description: A representation of a honey bee
+      allOf:
+        - $ref: '#/components/schemas/Pet'
+        - type: object
+          properties:
+            honeyPerDay:
+              type: number
+              description: Average amount of honey produced per day in ounces
+              example: 3.14
+          required:
+            - honeyPerDay
+    Id:
+      type: integer
+      format: int64
+    Order:
+      type: object
+      properties:
+        id:
+          description: Order ID
+          allOf:
+            - $ref: '#/components/schemas/Id'
+        petId:
+          description: Pet ID
+          allOf:
+            - $ref: '#/components/schemas/Id'
+        quantity:
+          type: integer
+          format: int32
+          minimum: 1
+          default: 1
+        shipDate:
+          description: Estimated ship date
+          type: string
+          format: date-time
+        status:
+          type: string
+          description: Order Status
+          enum:
+            - placed
+            - approved
+            - delivered
+        complete:
+          description: Indicates whenever order was completed or not
+          type: boolean
+          default: false
+      xml:
+        name: Order
+    Pet:
+      type: object
+      required:
+        - name
+        - photoUrls
+      discriminator:
+        propertyName: petType
+      properties:
+        petType:
+          description: Type of a pet
+          type: string
+        id:
+          description: Pet ID
+          allOf:
+            - $ref: '#/components/schemas/Id'
+        category:
+          description: Categories this pet belongs to
+          allOf:
+            - $ref: '#/components/schemas/Category'
+        name:
+          description: The name given to a pet
+          type: string
+          example: Guru
+        photoUrls:
+          description: The list of URL to a cute photos featuring pet
+          type: array
+          xml:
+            name: photoUrl
+            wrapped: true
+          items:
+            type: string
+            format: url
+        tags:
+          description: Tags attached to the pet
+          type: array
+          xml:
+            name: tag
+            wrapped: true
+          items:
+            $ref: '#/components/schemas/Tag'
+        status:
+          type: string
+          description: Pet status in the store
+          enum:
+            - available
+            - pending
+            - sold
+      xml:
+        name: Pet
+    Tag:
+      type: object
+      properties:
+        id:
+          description: Tag ID
+          allOf:
+            - $ref: '#/components/schemas/Id'
+        name:
+          description: Tag name
+          type: string
+          minLength: 1
+      xml:
+        name: Tag
+    User:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        username:
+          description: User supplied username
+          type: string
+          minLength: 4
+          example: John78
+        firstName:
+          description: User first name
+          type: string
+          minLength: 1
+          example: John
+        lastName:
+          description: User last name
+          type: string
+          minLength: 1
+          example: Smith
+        email:
+          description: User email address
+          type: string
+          format: email
+          example: john.smith@example.com
+        password:
+          type: string
+          description: >-
+            User password, MUST contain a mix of upper and lower case letters,
+            as well as digits
+          format: password
+          minLength: 8
+          pattern: '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])'
+          example: drowssaP123
+        phone:
+          description: User phone number in international format
+          type: string
+          pattern: '^\+(?:[0-9]-?){6,14}[0-9]$'
+          example: +1-202-555-0192
+          x-nullable: true
+        userStatus:
+          description: User status
+          type: integer
+          format: int32
+      xml:
+        name: User
+  responses: {}
+  parameters: {}
+  examples: {}
+  requestBodies:
+    Pet:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Pet'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Pet'
+      description: Pet object that needs to be added to the store
+    UserArray:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/User'
+      description: List of user object
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
+          scopes:
+            'write:pets': modify pets in your account
+            'read:pets': read your pets
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
+  headers: {}
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Press h to open a hovercard with more details.
