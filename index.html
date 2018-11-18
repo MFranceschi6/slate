@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>BeepBeep Data Service</title>
+    <title>API Documentation</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -198,10 +198,10 @@
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all.js"></script>
+      <script src="javascripts/all_nosearch.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;python&quot;]">
+  <body class="index" data-languages="[]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -210,1470 +210,903 @@
     </a>
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
-        <div class="lang-selector">
-              <a href="#" data-language-name="python">Python</a>
-        </div>
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
-          <li>
-            <a href="#beepbeep-data-service" class="toc-h1 toc-link" data-title="BeepBeep Data Service v0.1.9">BeepBeep Data Service v0.1.9</a>
-          </li>
-          <li>
-            <a href="#beepbeep-data-service-default" class="toc-h1 toc-link" data-title="Default">Default</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#getruns" class="toc-h2 toc-link" data-title="getRuns">getRuns</a>
-                  </li>
-                  <li>
-                    <a href="#addruns" class="toc-h2 toc-link" data-title="addRuns">addRuns</a>
-                  </li>
-                  <li>
-                    <a href="#getusers" class="toc-h2 toc-link" data-title="getUsers">getUsers</a>
-                  </li>
-                  <li>
-                    <a href="#adduser" class="toc-h2 toc-link" data-title="addUser">addUser</a>
-                  </li>
-                  <li>
-                    <a href="#getsingleuser" class="toc-h2 toc-link" data-title="getSingleUser">getSingleUser</a>
-                  </li>
-                  <li>
-                    <a href="#updatesingleuser" class="toc-h2 toc-link" data-title="updateSingleUser">updateSingleUser</a>
-                  </li>
-                  <li>
-                    <a href="#deletesingleuser" class="toc-h2 toc-link" data-title="deleteSingleUser">deleteSingleUser</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#schemas" class="toc-h1 toc-link" data-title="Schemas">Schemas</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#tocSrun" class="toc-h2 toc-link" data-title="Run">Run</a>
-                  </li>
-                  <li>
-                    <a href="#tocSresponserun" class="toc-h2 toc-link" data-title="ResponseRun">ResponseRun</a>
-                  </li>
-                  <li>
-                    <a href="#tocSusertemplate" class="toc-h2 toc-link" data-title="UserTemplate">UserTemplate</a>
-                  </li>
-                  <li>
-                    <a href="#tocSexistinguser" class="toc-h2 toc-link" data-title="ExistingUser">ExistingUser</a>
-                  </li>
-                  <li>
-                    <a href="#tocSuser" class="toc-h2 toc-link" data-title="User">User</a>
-                  </li>
-                  <li>
-                    <a href="#tocSerror" class="toc-h2 toc-link" data-title="Error">Error</a>
-                  </li>
-              </ul>
-          </li>
       </ul>
-        <ul class="toc-footer">
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="beepbeep-data-service">BeepBeep Data Service v0.1.9</h1>
-
-<blockquote>
-<p>Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.</p>
-</blockquote>
-
-<p>Returns info about BeepBeep registered users and their runs</p>
-
-<p>Base URLs:</p>
-
-<ul>
-<li><a href="0.0.0.0:5002">0.0.0.0:5002</a></li>
-</ul>
-
-<p>License: <a href="https://www.apache.org/licenses/LICENSE-2.0.html">APLv2</a></p>
-
-<h1 id="beepbeep-data-service-default">Default</h1>
-<h2 id='getruns'>getRuns</h2>
-<p><a id="opIdgetRuns"></a></p>
-
-<blockquote>
-<p>Code samples</p>
-</blockquote>
-<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
-<span class="p">}</span>
-
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'0.0.0.0:5002/runs/{runner_id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
-
-<span class="p">},</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
-
-<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-
-</code></pre>
-<p><code>GET /runs/{runner_id}</code></p>
-
-<p>Get all the run of an user with respect to some criteria</p>
-
-<h3 id="getruns-parameters">Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>In</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>runner_id</td>
-<td>path</td>
-<td>integer</td>
-<td>true</td>
-<td>ID of Runner</td>
-</tr>
-<tr>
-<td>start-date</td>
-<td>query</td>
-<td>string(date)</td>
-<td>false</td>
-<td>If this parameter is set all the runs returned will have a start_date not less than date-start</td>
-</tr>
-<tr>
-<td>finish-date</td>
-<td>query</td>
-<td>string(date)</td>
-<td>false</td>
-<td>If this parameter is set all the runs returned will have a start_date not greater than date-finish</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Example responses</p>
-
-<p>200 Response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"strava_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"elapsed_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"average_speed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"total_elevation_gain"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"runner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<h3 id="getruns-responses">Responses</h3>
-
-<table><thead>
-<tr>
-<th>Status</th>
-<th>Meaning</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
-<td>A, possibly empty, list of runs</td>
-<td>Inline</td>
-</tr>
-<tr>
-<td>400</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
-<td>Something went wrong trying to parse the request</td>
-<td><a href="#schemaerror">Error</a></td>
-</tr>
-</tbody></table>
-
-<h3 id="getruns-responseschema">Response Schema</h3>
-
-<p>Status Code <strong>200</strong></p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><em>anonymous</em></td>
-<td>[allOf]</td>
-<td>false</td>
-<td>none</td>
-<td>none</td>
-</tr>
-</tbody></table>
-
-<p><em>allOf</em></p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>» <em>anonymous</em></td>
-<td>object</td>
-<td>false</td>
-<td>none</td>
-<td>none</td>
-</tr>
-<tr>
-<td>»» id</td>
-<td>integer</td>
-<td>true</td>
-<td>none</td>
-<td>The ID of the run.</td>
-</tr>
-</tbody></table>
-
-<p><em>and</em></p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>» <em>anonymous</em></td>
-<td><a href="#schemarun">Run</a></td>
-<td>false</td>
-<td>none</td>
-<td>none</td>
-</tr>
-<tr>
-<td>»» title</td>
-<td>string</td>
-<td>true</td>
-<td>none</td>
-<td>A title for the run</td>
-</tr>
-<tr>
-<td>»» description</td>
-<td>string</td>
-<td>true</td>
-<td>none</td>
-<td>A more detailed description for the run</td>
-</tr>
-<tr>
-<td>»» strava_id</td>
-<td>integer</td>
-<td>true</td>
-<td>none</td>
-<td>The id of the run when fetched from Strava</td>
-</tr>
-<tr>
-<td>»» distance</td>
-<td>number(float)</td>
-<td>true</td>
-<td>none</td>
-<td>The distance the user run expressed in meters</td>
-</tr>
-<tr>
-<td>»» start_date</td>
-<td>integer(timestamp)</td>
-<td>true</td>
-<td>none</td>
-<td>The timestamp when this run was made</td>
-</tr>
-<tr>
-<td>»» elapsed_time</td>
-<td>integer</td>
-<td>true</td>
-<td>none</td>
-<td>The total time that this run took to complete</td>
-</tr>
-<tr>
-<td>»» average_speed</td>
-<td>number(float)</td>
-<td>true</td>
-<td>none</td>
-<td>The average speed of the run</td>
-</tr>
-<tr>
-<td>»» total_elevation_gain</td>
-<td>number(float)</td>
-<td>true</td>
-<td>none</td>
-<td>The total elevation gained during the run</td>
-</tr>
-<tr>
-<td>»» runner_id</td>
-<td>integer</td>
-<td>false</td>
-<td>none</td>
-<td>The id of the user who made this run</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-<h2 id='addruns'>addRuns</h2>
-<p><a id="opIdaddRuns"></a></p>
-
-<blockquote>
-<p>Code samples</p>
-</blockquote>
-<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span>
-<span class="p">}</span>
-
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'0.0.0.0:5002/add_runs'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
-
-<span class="p">},</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
-
-<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-
-</code></pre>
-<p><code>POST /add_runs</code></p>
-
-<p>Adds a bunch of runs to different users</p>
-
-<blockquote>
-<p>Body parameter</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"property1"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"strava_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"elapsed_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"average_speed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"total_elevation_gain"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"runner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"property2"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"strava_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"elapsed_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"average_speed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"total_elevation_gain"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"runner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="addruns-parameters">Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>In</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>body</td>
-<td>body</td>
-<td>object</td>
-<td>true</td>
-<td>An object of array of objects that describe all the runs of some users</td>
-</tr>
-<tr>
-<td>» <strong>additionalProperties</strong></td>
-<td>body</td>
-<td>[<a href="#schemarun">Run</a>]</td>
-<td>false</td>
-<td>none</td>
-</tr>
-<tr>
-<td>»» title</td>
-<td>body</td>
-<td>string</td>
-<td>true</td>
-<td>A title for the run</td>
-</tr>
-<tr>
-<td>»» description</td>
-<td>body</td>
-<td>string</td>
-<td>true</td>
-<td>A more detailed description for the run</td>
-</tr>
-<tr>
-<td>»» strava_id</td>
-<td>body</td>
-<td>integer</td>
-<td>true</td>
-<td>The id of the run when fetched from Strava</td>
-</tr>
-<tr>
-<td>»» distance</td>
-<td>body</td>
-<td>number(float)</td>
-<td>true</td>
-<td>The distance the user run expressed in meters</td>
-</tr>
-<tr>
-<td>»» start_date</td>
-<td>body</td>
-<td>integer(timestamp)</td>
-<td>true</td>
-<td>The timestamp when this run was made</td>
-</tr>
-<tr>
-<td>»» elapsed_time</td>
-<td>body</td>
-<td>integer</td>
-<td>true</td>
-<td>The total time that this run took to complete</td>
-</tr>
-<tr>
-<td>»» average_speed</td>
-<td>body</td>
-<td>number(float)</td>
-<td>true</td>
-<td>The average speed of the run</td>
-</tr>
-<tr>
-<td>»» total_elevation_gain</td>
-<td>body</td>
-<td>number(float)</td>
-<td>true</td>
-<td>The total elevation gained during the run</td>
-</tr>
-<tr>
-<td>»» runner_id</td>
-<td>body</td>
-<td>integer</td>
-<td>false</td>
-<td>The id of the user who made this run</td>
-</tr>
-</tbody></table>
-
-<h3 id="addruns-responses">Responses</h3>
-
-<table><thead>
-<tr>
-<th>Status</th>
-<th>Meaning</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>204</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.5">No Content</a></td>
-<td>The runs were added succesfully</td>
-<td>None</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-<h2 id='getusers'>getUsers</h2>
-<p><a id="opIdgetUsers"></a></p>
-
-<blockquote>
-<p>Code samples</p>
-</blockquote>
-<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
-<span class="p">}</span>
-
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'0.0.0.0:5002/users'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
-
-<span class="p">},</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
-
-<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-
-</code></pre>
-<p><code>GET /users</code></p>
-
-<p>Returns the list of all the users</p>
-
-<blockquote>
-<p>Example responses</p>
-
-<p>200 Response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@example.com"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"strava_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"max_hr"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"rest_hr"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"vo2max"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="getusers-responses">Responses</h3>
-
-<table><thead>
-<tr>
-<th>Status</th>
-<th>Meaning</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
-<td>A, possibly empty, list of users</td>
-<td>Inline</td>
-</tr>
-</tbody></table>
-
-<h3 id="getusers-responseschema">Response Schema</h3>
-
-<p>Status Code <strong>200</strong></p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>» users</td>
-<td>[allOf]</td>
-<td>false</td>
-<td>none</td>
-<td>none</td>
-</tr>
-</tbody></table>
-
-<p><em>allOf</em></p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>»» <em>anonymous</em></td>
-<td>object</td>
-<td>false</td>
-<td>none</td>
-<td>none</td>
-</tr>
-<tr>
-<td>»»» id</td>
-<td>integer</td>
-<td>true</td>
-<td>none</td>
-<td>the ID of the user</td>
-</tr>
-</tbody></table>
-
-<p><em>and</em></p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>»» <em>anonymous</em></td>
-<td><a href="#schemausertemplate">UserTemplate</a></td>
-<td>false</td>
-<td>none</td>
-<td>none</td>
-</tr>
-<tr>
-<td>»»» email</td>
-<td>string(email)</td>
-<td>true</td>
-<td>none</td>
-<td>The email of the user</td>
-</tr>
-<tr>
-<td>»»» firstname</td>
-<td>string</td>
-<td>true</td>
-<td>none</td>
-<td>The firstname of the user</td>
-</tr>
-<tr>
-<td>»»» lastname</td>
-<td>string</td>
-<td>true</td>
-<td>none</td>
-<td>The lastname of the user</td>
-</tr>
-<tr>
-<td>»»» strava_token</td>
-<td>string</td>
-<td>false</td>
-<td>none</td>
-<td>The strava_token of the user</td>
-</tr>
-<tr>
-<td>»»» age</td>
-<td>integer</td>
-<td>true</td>
-<td>none</td>
-<td>The age of the user</td>
-</tr>
-<tr>
-<td>»»» weight</td>
-<td>number(float)</td>
-<td>true</td>
-<td>none</td>
-<td>The weight of the user</td>
-</tr>
-<tr>
-<td>»»» max_hr</td>
-<td>integer</td>
-<td>true</td>
-<td>none</td>
-<td>The max heartrate of the user</td>
-</tr>
-<tr>
-<td>»»» rest_hr</td>
-<td>integer</td>
-<td>true</td>
-<td>none</td>
-<td>The at rest heartrate of the user</td>
-</tr>
-<tr>
-<td>»»» vo2max</td>
-<td>number(float)</td>
-<td>true</td>
-<td>none</td>
-<td>I have no clue what this is</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-<h2 id='adduser'>addUser</h2>
-<p><a id="opIdaddUser"></a></p>
-
-<blockquote>
-<p>Code samples</p>
-</blockquote>
-<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
-<span class="p">}</span>
-
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'0.0.0.0:5002/users'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
-
-<span class="p">},</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
-
-<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-
-</code></pre>
-<p><code>POST /users</code></p>
-
-<p>Register a new User inside the Data Service</p>
-
-<blockquote>
-<p>Body parameter</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"strava_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"max_hr"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"rest_hr"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"vo2max"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="adduser-parameters">Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>In</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>body</td>
-<td>body</td>
-<td><a href="#schemauser">User</a></td>
-<td>true</td>
-<td>The description of the new User to add into the DataService</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Example responses</p>
-
-<p>400 Response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"response-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="adduser-responses">Responses</h3>
-
-<table><thead>
-<tr>
-<th>Status</th>
-<th>Meaning</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>204</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.5">No Content</a></td>
-<td>The user was added succesfully</td>
-<td>None</td>
-</tr>
-<tr>
-<td>400</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
-<td>Something went wrong trying to parse the request</td>
-<td><a href="#schemaerror">Error</a></td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-<h2 id='getsingleuser'>getSingleUser</h2>
-<p><a id="opIdgetSingleUser"></a></p>
-
-<blockquote>
-<p>Code samples</p>
-</blockquote>
-<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
-<span class="p">}</span>
-
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'0.0.0.0:5002/user/{user_id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
-
-<span class="p">},</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
-
-<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-
-</code></pre>
-<p><code>GET /user/{user_id}</code></p>
-
-<p>Returns a specific User</p>
-
-<h3 id="getsingleuser-parameters">Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>In</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>user_id</td>
-<td>path</td>
-<td>integer</td>
-<td>true</td>
-<td>The id of the user</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Example responses</p>
-
-<p>200 Response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"strava_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"max_hr"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"rest_hr"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"vo2max"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="getsingleuser-responses">Responses</h3>
-
-<table><thead>
-<tr>
-<th>Status</th>
-<th>Meaning</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
-<td>Information about an User</td>
-<td><a href="#schemaexistinguser">ExistingUser</a></td>
-</tr>
-<tr>
-<td>404</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
-<td>The specified resource was not found</td>
-<td><a href="#schemaerror">Error</a></td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-<h2 id='updatesingleuser'>updateSingleUser</h2>
-<p><a id="opIdupdateSingleUser"></a></p>
-
-<blockquote>
-<p>Code samples</p>
-</blockquote>
-<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
-<span class="p">}</span>
-
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">'0.0.0.0:5002/user/{user_id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
-
-<span class="p">},</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
-
-<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-
-</code></pre>
-<p><code>PUT /user/{user_id}</code></p>
-
-<p>Update the information of a single User</p>
-
-<blockquote>
-<p>Body parameter</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"strava_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"max_hr"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"rest_hr"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"vo2max"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="updatesingleuser-parameters">Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>In</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>body</td>
-<td>body</td>
-<td><a href="#schemaexistinguser">ExistingUser</a></td>
-<td>true</td>
-<td>The description of the update information of the User</td>
-</tr>
-<tr>
-<td>user_id</td>
-<td>path</td>
-<td>integer</td>
-<td>true</td>
-<td>The id of the user</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Example responses</p>
-
-<p>400 Response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"response-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="updatesingleuser-responses">Responses</h3>
-
-<table><thead>
-<tr>
-<th>Status</th>
-<th>Meaning</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>204</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.5">No Content</a></td>
-<td>User succesfully updated</td>
-<td>None</td>
-</tr>
-<tr>
-<td>400</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
-<td>Something went wrong trying to parse the request</td>
-<td><a href="#schemaerror">Error</a></td>
-</tr>
-<tr>
-<td>404</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
-<td>The specified resource was not found</td>
-<td><a href="#schemaerror">Error</a></td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-<h2 id='deletesingleuser'>deleteSingleUser</h2>
-<p><a id="opIddeleteSingleUser"></a></p>
-
-<blockquote>
-<p>Code samples</p>
-</blockquote>
-<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s">'Accept'</span><span class="p">:</span> <span class="s">'application/json'</span>
-<span class="p">}</span>
-
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'0.0.0.0:5002/user/{user_id}'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
-
-<span class="p">},</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
-
-<span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-
-</code></pre>
-<p><code>DELETE /user/{user_id}</code></p>
-
-<p>Remove an User from the service</p>
-
-<h3 id="deletesingleuser-parameters">Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>In</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>user_id</td>
-<td>path</td>
-<td>integer</td>
-<td>true</td>
-<td>The id of the user</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Example responses</p>
-
-<p>404 Response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"response-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="deletesingleuser-responses">Responses</h3>
-
-<table><thead>
-<tr>
-<th>Status</th>
-<th>Meaning</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>204</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.5">No Content</a></td>
-<td>User succesfully removed</td>
-<td>None</td>
-</tr>
-<tr>
-<td>404</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.4">Not Found</a></td>
-<td>The specified resource was not found</td>
-<td><a href="#schemaerror">Error</a></td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-<h1 id='schemas'>Schemas</h1>
-<h2 id="tocSrun">Run</h2>
-
-<p><a id="schemarun"></a></p>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"strava_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"elapsed_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"average_speed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"total_elevation_gain"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"runner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='properties'>Properties</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>title</td>
-<td>string</td>
-<td>true</td>
-<td>none</td>
-<td>A title for the run</td>
-</tr>
-<tr>
-<td>description</td>
-<td>string</td>
-<td>true</td>
-<td>none</td>
-<td>A more detailed description for the run</td>
-</tr>
-<tr>
-<td>strava_id</td>
-<td>integer</td>
-<td>true</td>
-<td>none</td>
-<td>The id of the run when fetched from Strava</td>
-</tr>
-<tr>
-<td>distance</td>
-<td>number(float)</td>
-<td>true</td>
-<td>none</td>
-<td>The distance the user run expressed in meters</td>
-</tr>
-<tr>
-<td>start_date</td>
-<td>integer(timestamp)</td>
-<td>true</td>
-<td>none</td>
-<td>The timestamp when this run was made</td>
-</tr>
-<tr>
-<td>elapsed_time</td>
-<td>integer</td>
-<td>true</td>
-<td>none</td>
-<td>The total time that this run took to complete</td>
-</tr>
-<tr>
-<td>average_speed</td>
-<td>number(float)</td>
-<td>true</td>
-<td>none</td>
-<td>The average speed of the run</td>
-</tr>
-<tr>
-<td>total_elevation_gain</td>
-<td>number(float)</td>
-<td>true</td>
-<td>none</td>
-<td>The total elevation gained during the run</td>
-</tr>
-<tr>
-<td>runner_id</td>
-<td>integer</td>
-<td>false</td>
-<td>none</td>
-<td>The id of the user who made this run</td>
-</tr>
-</tbody></table>
-
-<h2 id="tocSresponserun">ResponseRun</h2>
-
-<p><a id="schemaresponserun"></a></p>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"strava_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"elapsed_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"average_speed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"total_elevation_gain"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"runner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='properties-2'>Properties</h3>
-<p><em>allOf</em></p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><em>anonymous</em></td>
-<td>object</td>
-<td>false</td>
-<td>none</td>
-<td>none</td>
-</tr>
-<tr>
-<td>» id</td>
-<td>integer</td>
-<td>true</td>
-<td>none</td>
-<td>The ID of the run.</td>
-</tr>
-</tbody></table>
-
-<p><em>and</em></p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><em>anonymous</em></td>
-<td><a href="#schemarun">Run</a></td>
-<td>false</td>
-<td>none</td>
-<td>none</td>
-</tr>
-</tbody></table>
-
-<h2 id="tocSusertemplate">UserTemplate</h2>
-
-<p><a id="schemausertemplate"></a></p>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"strava_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"max_hr"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"rest_hr"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"vo2max"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='properties-3'>Properties</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>email</td>
-<td>string(email)</td>
-<td>true</td>
-<td>none</td>
-<td>The email of the user</td>
-</tr>
-<tr>
-<td>firstname</td>
-<td>string</td>
-<td>true</td>
-<td>none</td>
-<td>The firstname of the user</td>
-</tr>
-<tr>
-<td>lastname</td>
-<td>string</td>
-<td>true</td>
-<td>none</td>
-<td>The lastname of the user</td>
-</tr>
-<tr>
-<td>strava_token</td>
-<td>string</td>
-<td>false</td>
-<td>none</td>
-<td>The strava_token of the user</td>
-</tr>
-<tr>
-<td>age</td>
-<td>integer</td>
-<td>true</td>
-<td>none</td>
-<td>The age of the user</td>
-</tr>
-<tr>
-<td>weight</td>
-<td>number(float)</td>
-<td>true</td>
-<td>none</td>
-<td>The weight of the user</td>
-</tr>
-<tr>
-<td>max_hr</td>
-<td>integer</td>
-<td>true</td>
-<td>none</td>
-<td>The max heartrate of the user</td>
-</tr>
-<tr>
-<td>rest_hr</td>
-<td>integer</td>
-<td>true</td>
-<td>none</td>
-<td>The at rest heartrate of the user</td>
-</tr>
-<tr>
-<td>vo2max</td>
-<td>number(float)</td>
-<td>true</td>
-<td>none</td>
-<td>I have no clue what this is</td>
-</tr>
-</tbody></table>
-
-<h2 id="tocSexistinguser">ExistingUser</h2>
-
-<p><a id="schemaexistinguser"></a></p>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"strava_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"max_hr"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"rest_hr"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"vo2max"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='properties-4'>Properties</h3>
-<p><em>allOf</em></p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><em>anonymous</em></td>
-<td>object</td>
-<td>false</td>
-<td>none</td>
-<td>none</td>
-</tr>
-<tr>
-<td>» id</td>
-<td>integer</td>
-<td>true</td>
-<td>none</td>
-<td>the ID of the user</td>
-</tr>
-</tbody></table>
-
-<p><em>and</em></p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><em>anonymous</em></td>
-<td><a href="#schemausertemplate">UserTemplate</a></td>
-<td>false</td>
-<td>none</td>
-<td>none</td>
-</tr>
-</tbody></table>
-
-<h2 id="tocSuser">User</h2>
-
-<p><a id="schemauser"></a></p>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"strava_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"max_hr"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"rest_hr"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"vo2max"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='properties-5'>Properties</h3>
-<p><em>allOf</em></p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><em>anonymous</em></td>
-<td>object</td>
-<td>false</td>
-<td>none</td>
-<td>none</td>
-</tr>
-<tr>
-<td>» id</td>
-<td>integer</td>
-<td>false</td>
-<td>none</td>
-<td>the ID of the user</td>
-</tr>
-</tbody></table>
-
-<p><em>and</em></p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><em>anonymous</em></td>
-<td><a href="#schemausertemplate">UserTemplate</a></td>
-<td>false</td>
-<td>none</td>
-<td>none</td>
-</tr>
-</tbody></table>
-
-<h2 id="tocSerror">Error</h2>
-
-<p><a id="schemaerror"></a></p>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"response-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='properties-6'>Properties</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Restrictions</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>response-code</td>
-<td>integer</td>
-<td>true</td>
-<td>none</td>
-<td>The code of the HTTP response error</td>
-</tr>
-<tr>
-<td>message</td>
-<td>string</td>
-<td>true</td>
-<td>none</td>
-<td>Additional description about the error</td>
-</tr>
-</tbody></table>
+        <p>Skip to content</p>
+
+<p>Search or jump to…</p>
+
+<p>Pull requests
+Issues
+Marketplace
+Explore
+ @MFranceschi6 Sign out
+12
+347 113 Mermade/widdershins
+ Code  Issues 19  Pull requests 4  Projects 0  Wiki  Insights
+widdershins/defs/redoc3.yaml
+e30b1c2  on Nov 30, 2017
+@MikeRalphson MikeRalphson Prep for v3 release</p>
+
+<p>878 lines (858 sloc)  23.3 KB
+openapi: 3.0.0-RC2
+servers:
+  - url: &#39;http://petstore.swagger.io/v2&#39;
+  - url: &#39;https://petstore.swagger.io/v2&#39;
+info:
+  description: &gt;
+    This is a sample server Petstore server.
+    You can find out more about Swagger at
+    <a href="http://swagger.io">http://swagger.io</a> or on <a href="http://swagger.io/irc/">irc.freenode.net,
+    #swagger</a>.
+    For this sample, you can use the api key <code>special-key</code> to test the
+    authorization filters.
+    # Introduction
+    This API is documented in <strong>OpenAPI format</strong> and is based on
+    <a href="http://petstore.swagger.io/">Petstore sample</a> provided by
+    <a href="http://swagger.io">swagger.io</a> team.
+    It was <strong>extended</strong> to illustrate features of
+    <a href="https://github.com/Rebilly/generator-openapi-repo">generator-openapi-repo</a>
+    tool and <a href="https://github.com/Rebilly/ReDoc">ReDoc</a> documentation. In
+    addition to standard
+    OpenAPI syntax we use a few <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md">vendor
+    extensions</a>.
+    # OpenAPI Specification
+    This API is documented in <strong>OpenAPI format</strong> and is based on
+    <a href="http://petstore.swagger.io/">Petstore sample</a> provided by
+    <a href="http://swagger.io">swagger.io</a> team.
+    It was <strong>extended</strong> to illustrate features of
+    <a href="https://github.com/Rebilly/generator-openapi-repo">generator-openapi-repo</a>
+    tool and <a href="https://github.com/Rebilly/ReDoc">ReDoc</a> documentation. In
+    addition to standard
+    OpenAPI syntax we use a few <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md">vendor
+    extensions</a>.
+    # Cross-Origin Resource Sharing
+    This API features Cross-Origin Resource Sharing (CORS) implemented in
+    compliance with  <a href="https://www.w3.org/TR/cors/">W3C spec</a>.
+    And that allows cross-domain communication from the browser.
+    All responses have a wildcard same-origin which makes them completely public
+    and accessible to everyone, including any code on any site.
+  version: 1.0.0
+  title: Swagger Petstore
+  termsOfService: &#39;http://swagger.io/terms/&#39;
+  contact:
+    email: apiteam@swagger.io
+  x-logo:
+    url: &#39;https://rebilly.github.io/ReDoc/petstore-logo.png&#39;
+  license:
+    name: Apache 2.0
+    url: &#39;http://www.apache.org/licenses/LICENSE-2.0.html&#39;
+externalDocs:
+  description: Find out how to create Github repo for your OpenAPI spec.
+  url: &#39;https://github.com/Rebilly/generator-openapi-repo&#39;
+tags:
+  - name: pet
+    description: Everything about your Pets
+  - name: store
+    description: Access to Petstore orders
+  - name: user
+    description: Operations about user
+paths:
+  /pet:
+    post:
+      tags:
+        - pet
+      summary: Add a new pet to the store
+      description: Add new pet to the store inventory.
+      operationId: addPet
+      parameters: []
+      responses:
+        &#39;405&#39;:
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - &#39;write:pets&#39;
+            - &#39;read:pets&#39;
+      x-code-samples:
+        - lang: &#39;C#&#39;
+          source: |
+            PetStore.v1.Pet pet = new PetStore.v1.Pet();
+            pet.setApiKey(&quot;your api key&quot;);
+            pet.petType = PetStore.v1.Pet.TYPE_DOG;
+            pet.name = &quot;Rex&quot;;
+            // set other fields
+            PetStoreResponse response = pet.create();
+            if (response.statusCode == HttpStatusCode.Created)
+            {
+              // Successfully created
+            }
+            else
+            {
+              // Something wrong -- check response for errors
+              Console.WriteLine(response.getRawResponse());
+            }
+        - lang: PHP
+          source: |
+            $form = new \PetStore\Entities\Pet();
+            $form-&gt;setPetType(&quot;Dog&quot;);
+            $form-&gt;setName(&quot;Rex&quot;);
+            // set other fields
+            try {
+                $pet = $client-&gt;pets()-&gt;create($form);
+            } catch (UnprocessableEntityException $e) {
+                var_dump($e-&gt;getErrors());
+            }
+      requestBody:
+        $ref: &#39;#/components/requestBodies/Pet&#39;
+    put:
+      tags:
+        - pet
+      summary: Update an existing pet
+      description: &#39;&#39;
+      operationId: updatePet
+      parameters: []
+      responses:
+        &#39;400&#39;:
+          description: Invalid ID supplied
+        &#39;404&#39;:
+          description: Pet not found
+        &#39;405&#39;:
+          description: Validation exception
+      security:
+        - petstore_auth:
+            - &#39;write:pets&#39;
+            - &#39;read:pets&#39;
+      x-code-samples:
+        - lang: PHP
+          source: |
+            $form = new \PetStore\Entities\Pet();
+            $form-&gt;setPetId(1);
+            $form-&gt;setPetType(&quot;Dog&quot;);
+            $form-&gt;setName(&quot;Rex&quot;);
+            // set other fields
+            try {
+                $pet = $client-&gt;pets()-&gt;update($form);
+            } catch (UnprocessableEntityException $e) {
+                var_dump($e-&gt;getErrors());
+            }
+      requestBody:
+        $ref: &#39;#/components/requestBodies/Pet&#39;
+  &#39;/pet/{petId}&#39;:
+    get:
+      tags:
+        - pet
+      summary: Find pet by ID
+      description: Returns a single pet
+      operationId: getPetById
+      parameters:
+        - name: petId
+          in: path
+          description: ID of pet to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        &#39;200&#39;:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: &#39;#/components/schemas/Pet&#39;
+            application/json:
+              schema:
+                $ref: &#39;#/components/schemas/Pet&#39;
+        &#39;400&#39;:
+          description: Invalid ID supplied
+        &#39;404&#39;:
+          description: Pet not found
+      security:
+        - api_key: []
+    post:
+      tags:
+        - pet
+      summary: Updates a pet in the store with form data
+      description: &#39;&#39;
+      operationId: updatePetWithForm
+      parameters:
+        - name: petId
+          in: path
+          description: ID of pet that needs to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        &#39;405&#39;:
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - &#39;write:pets&#39;
+            - &#39;read:pets&#39;
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: Updated name of the pet
+                  type: string
+                status:
+                  description: Updated status of the pet
+                  type: string
+    delete:
+      tags:
+        - pet
+      summary: Deletes a pet
+      description: &#39;&#39;
+      operationId: deletePet
+      parameters:
+        - name: api_key
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: petId
+          in: path
+          description: Pet id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        &#39;400&#39;:
+          description: Invalid pet value
+      security:
+        - petstore_auth:
+            - &#39;write:pets&#39;
+            - &#39;read:pets&#39;
+  &#39;/pet/{petId}/uploadImage&#39;:
+    post:
+      tags:
+        - pet
+      summary: uploads an image
+      description: &#39;&#39;
+      operationId: uploadFile
+      parameters:
+        - name: petId
+          in: path
+          description: ID of pet to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        &#39;200&#39;:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: &#39;#/components/schemas/ApiResponse&#39;
+      security:
+        - petstore_auth:
+            - &#39;write:pets&#39;
+            - &#39;read:pets&#39;
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+  /pet/findByStatus:
+    get:
+      tags:
+        - pet
+      summary: Finds Pets by status
+      description: Multiple status values can be provided with comma seperated strings
+      operationId: findPetsByStatus
+      parameters:
+        - name: status
+          in: query
+          description: Status values that need to be considered for filter
+          required: true
+          style: form
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - available
+                - pending
+                - sold
+              default: available
+      responses:
+        &#39;200&#39;:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: &#39;#/components/schemas/Pet&#39;
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: &#39;#/components/schemas/Pet&#39;
+        &#39;400&#39;:
+          description: Invalid status value
+      security:
+        - petstore_auth:
+            - &#39;write:pets&#39;
+            - &#39;read:pets&#39;
+  /pet/findByTags:
+    get:
+      tags:
+        - pet
+      summary: Finds Pets by tags
+      description: &gt;-
+        Muliple tags can be provided with comma seperated strings. Use tag1,
+        tag2, tag3 for testing.
+      operationId: findPetsByTags
+      parameters:
+        - name: tags
+          in: query
+          description: Tags to filter by
+          required: true
+          style: form
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        &#39;200&#39;:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: &#39;#/components/schemas/Pet&#39;
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: &#39;#/components/schemas/Pet&#39;
+        &#39;400&#39;:
+          description: Invalid tag value
+      security:
+        - petstore_auth:
+            - &#39;write:pets&#39;
+            - &#39;read:pets&#39;
+  /store/inventory:
+    get:
+      tags:
+        - store
+      summary: Returns pet inventories by status
+      description: Returns a map of status codes to quantities
+      operationId: getInventory
+      parameters: []
+      responses:
+        &#39;200&#39;:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+                  format: int32
+      security:
+        - api_key: []
+  /store/order:
+    post:
+      tags:
+        - store
+      summary: Place an order for a pet
+      description: &#39;&#39;
+      operationId: placeOrder
+      parameters: []
+      responses:
+        &#39;200&#39;:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: &#39;#/components/schemas/Order&#39;
+            application/json:
+              schema:
+                $ref: &#39;#/components/schemas/Order&#39;
+        &#39;400&#39;:
+          description: Invalid Order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: &#39;#/components/schemas/Order&#39;
+        description: order placed for purchasing the pet
+  &#39;/store/order/{orderId}&#39;:
+    get:
+      tags:
+        - store
+      summary: Find purchase order by ID
+      description: &gt;-
+        For valid response try integer IDs with value &lt;= 5 or &gt; 10. Other values
+        will generated exceptions
+      operationId: getOrderById
+      parameters:
+        - name: orderId
+          in: path
+          description: ID of pet that needs to be fetched
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+            maximum: 5
+      responses:
+        &#39;200&#39;:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: &#39;#/components/schemas/Order&#39;
+            application/json:
+              schema:
+                $ref: &#39;#/components/schemas/Order&#39;
+        &#39;400&#39;:
+          description: Invalid ID supplied
+        &#39;404&#39;:
+          description: Order not found
+    delete:
+      tags:
+        - store
+      summary: Delete purchase order by ID
+      description: &gt;-
+        For valid response try integer IDs with value &lt; 1000. Anything above
+        1000 or nonintegers will generate API errors
+      operationId: deleteOrder
+      parameters:
+        - name: orderId
+          in: path
+          description: ID of the order that needs to be deleted
+          required: true
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        &#39;400&#39;:
+          description: Invalid ID supplied
+        &#39;404&#39;:
+          description: Order not found
+  /user:
+    post:
+      tags:
+        - user
+      summary: Create user
+      description: This can only be done by the logged in user.
+      operationId: createUser
+      parameters: []
+      responses:
+        default:
+          description: successful operation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: &#39;#/components/schemas/User&#39;
+        description: Created user object
+  &#39;/user/{username}&#39;:
+    get:
+      tags:
+        - user
+      summary: Get user by user name
+      description: &#39;&#39;
+      operationId: getUserByName
+      parameters:
+        - name: username
+          in: path
+          description: &#39;The name that needs to be fetched. Use user1 for testing. &#39;
+          required: true
+          schema:
+            type: string
+      responses:
+        &#39;200&#39;:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: &#39;#/components/schemas/User&#39;
+            application/json:
+              schema:
+                $ref: &#39;#/components/schemas/User&#39;
+        &#39;400&#39;:
+          description: Invalid username supplied
+        &#39;404&#39;:
+          description: User not found
+    put:
+      tags:
+        - user
+      summary: Updated user
+      description: This can only be done by the logged in user.
+      operationId: updateUser
+      parameters:
+        - name: username
+          in: path
+          description: name that need to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        &#39;400&#39;:
+          description: Invalid user supplied
+        &#39;404&#39;:
+          description: User not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: &#39;#/components/schemas/User&#39;
+        description: Updated user object
+    delete:
+      tags:
+        - user
+      summary: Delete user
+      description: This can only be done by the logged in user.
+      operationId: deleteUser
+      parameters:
+        - name: username
+          in: path
+          description: The name that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        &#39;400&#39;:
+          description: Invalid username supplied
+        &#39;404&#39;:
+          description: User not found
+  /user/createWithArray:
+    post:
+      tags:
+        - user
+      summary: Creates list of users with given input array
+      description: &#39;&#39;
+      operationId: createUsersWithArrayInput
+      parameters: []
+      responses:
+        default:
+          description: successful operation
+      requestBody:
+        $ref: &#39;#/components/requestBodies/UserArray&#39;
+  /user/createWithList:
+    post:
+      tags:
+        - user
+      summary: Creates list of users with given input array
+      description: &#39;&#39;
+      operationId: createUsersWithListInput
+      parameters: []
+      responses:
+        default:
+          description: successful operation
+      requestBody:
+        $ref: &#39;#/components/requestBodies/UserArray&#39;
+  /user/login:
+    get:
+      tags:
+        - user
+      summary: Logs user into the system
+      description: &#39;&#39;
+      operationId: loginUser
+      parameters:
+        - name: username
+          in: query
+          description: The user name for login
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: query
+          description: The password for login in clear text
+          required: true
+          schema:
+            type: string
+      responses:
+        &#39;200&#39;:
+          description: successful operation
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              schema:
+                type: integer
+                format: int32
+            X-Expires-After:
+              description: date in UTC when toekn expires
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/xml:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+              examples:
+                response:
+                  value: OK
+        &#39;400&#39;:
+          description: Invalid username/password supplied
+  /user/logout:
+    get:
+      tags:
+        - user
+      summary: Logs out current logged in user session
+      description: &#39;&#39;
+      operationId: logoutUser
+      parameters: []
+      responses:
+        default:
+          description: successful operation
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+    Cat:
+      description: A representation of a cat
+      allOf:
+        - $ref: &#39;#/components/schemas/Pet&#39;
+        - type: object
+          properties:
+            huntingSkill:
+              type: string
+              description: The measured skill for hunting
+              default: lazy
+              enum:
+                - clueless
+                - lazy
+                - adventurous
+                - aggressive
+          required:
+            - huntingSkill
+    Category:
+      type: object
+      properties:
+        id:
+          description: Category ID
+          allOf:
+            - $ref: &#39;#/components/schemas/Id&#39;
+        name:
+          description: Category name
+          type: string
+          minLength: 1
+      xml:
+        name: Category
+    Dog:
+      description: A representation of a dog
+      allOf:
+        - $ref: &#39;#/components/schemas/Pet&#39;
+        - type: object
+          properties:
+            packSize:
+              type: integer
+              format: int32
+              description: The size of the pack the dog is from
+              default: 1
+              minimum: 1
+          required:
+            - packSize
+    HoneyBee:
+      description: A representation of a honey bee
+      allOf:
+        - $ref: &#39;#/components/schemas/Pet&#39;
+        - type: object
+          properties:
+            honeyPerDay:
+              type: number
+              description: Average amount of honey produced per day in ounces
+              example: 3.14
+          required:
+            - honeyPerDay
+    Id:
+      type: integer
+      format: int64
+    Order:
+      type: object
+      properties:
+        id:
+          description: Order ID
+          allOf:
+            - $ref: &#39;#/components/schemas/Id&#39;
+        petId:
+          description: Pet ID
+          allOf:
+            - $ref: &#39;#/components/schemas/Id&#39;
+        quantity:
+          type: integer
+          format: int32
+          minimum: 1
+          default: 1
+        shipDate:
+          description: Estimated ship date
+          type: string
+          format: date-time
+        status:
+          type: string
+          description: Order Status
+          enum:
+            - placed
+            - approved
+            - delivered
+        complete:
+          description: Indicates whenever order was completed or not
+          type: boolean
+          default: false
+      xml:
+        name: Order
+    Pet:
+      type: object
+      required:
+        - name
+        - photoUrls
+      discriminator:
+        propertyName: petType
+      properties:
+        petType:
+          description: Type of a pet
+          type: string
+        id:
+          description: Pet ID
+          allOf:
+            - $ref: &#39;#/components/schemas/Id&#39;
+        category:
+          description: Categories this pet belongs to
+          allOf:
+            - $ref: &#39;#/components/schemas/Category&#39;
+        name:
+          description: The name given to a pet
+          type: string
+          example: Guru
+        photoUrls:
+          description: The list of URL to a cute photos featuring pet
+          type: array
+          xml:
+            name: photoUrl
+            wrapped: true
+          items:
+            type: string
+            format: url
+        tags:
+          description: Tags attached to the pet
+          type: array
+          xml:
+            name: tag
+            wrapped: true
+          items:
+            $ref: &#39;#/components/schemas/Tag&#39;
+        status:
+          type: string
+          description: Pet status in the store
+          enum:
+            - available
+            - pending
+            - sold
+      xml:
+        name: Pet
+    Tag:
+      type: object
+      properties:
+        id:
+          description: Tag ID
+          allOf:
+            - $ref: &#39;#/components/schemas/Id&#39;
+        name:
+          description: Tag name
+          type: string
+          minLength: 1
+      xml:
+        name: Tag
+    User:
+      type: object
+      properties:
+        id:
+          $ref: &#39;#/components/schemas/Id&#39;
+        username:
+          description: User supplied username
+          type: string
+          minLength: 4
+          example: John78
+        firstName:
+          description: User first name
+          type: string
+          minLength: 1
+          example: John
+        lastName:
+          description: User last name
+          type: string
+          minLength: 1
+          example: Smith
+        email:
+          description: User email address
+          type: string
+          format: email
+          example: john.smith@example.com
+        password:
+          type: string
+          description: &gt;-
+            User password, MUST contain a mix of upper and lower case letters,
+            as well as digits
+          format: password
+          minLength: 8
+          pattern: &#39;(?=.<em>[a-z])(?=.</em>[A-Z])(?=.*[0-9])&#39;
+          example: drowssaP123
+        phone:
+          description: User phone number in international format
+          type: string
+          pattern: &#39;^+(?:[0-9]-?){6,14}[0-9]$&#39;
+          example: +1-202-555-0192
+          x-nullable: true
+        userStatus:
+          description: User status
+          type: integer
+          format: int32
+      xml:
+        name: User
+  responses: {}
+  parameters: {}
+  examples: {}
+  requestBodies:
+    Pet:
+      content:
+        application/json:
+          schema:
+            $ref: &#39;#/components/schemas/Pet&#39;
+        application/xml:
+          schema:
+            $ref: &#39;#/components/schemas/Pet&#39;
+      description: Pet object that needs to be added to the store
+    UserArray:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: &#39;#/components/schemas/User&#39;
+      description: List of user object
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: &#39;http://petstore.swagger.io/api/oauth/dialog&#39;
+          scopes:
+            &#39;write:pets&#39;: modify pets in your account
+            &#39;read:pets&#39;: read your pets
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
+  headers: {}
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Press h to open a hovercard with more details.</p>
 
       </div>
       <div class="dark-box">
-          <div class="lang-selector">
-                <a href="#" data-language-name="python">Python</a>
-          </div>
       </div>
     </div>
   </body>
