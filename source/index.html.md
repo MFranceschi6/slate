@@ -1366,6 +1366,7 @@ Get all the run of an user with respect to some criteria
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|A, possibly empty, list of runs|Inline|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Something went wrong trying to parse the request|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|The specified resource was not found|[Error](#schemaerror)|
 
 <h3 id="getruns-responseschema">Response Schema</h3>
 
