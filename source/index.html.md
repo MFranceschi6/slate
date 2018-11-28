@@ -1,5 +1,5 @@
 ---
-title: Beep Beep Statistics Webservice
+title: BeepBeep Challenge
 language_tabs:
   - shell: Shell
   - http: HTTP
@@ -17,38 +17,36 @@ headingLevel: 2
 
 ---
 
-<h1 id="beep-beep-statistics-webservice">Beep Beep Statistics Webservice v0.1.0</h1>
+<h1 id="beepbeep-challenge">BeepBeep Challenge v0.1.9</h1>
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
-This is a statistics web server for the Beep Beep application for retrieving statistics about your runs in a visual graphical format. For more information, visit the Github repository: https://github.com/MFranceschi6/BeepBeep-statistics
+Returns info about BeepBeep user challenges
 
 Base URLs:
 
-* <a href="0.0.0.0:5001">0.0.0.0:5001</a>
-
-<a href="https://github.com/MFranceschi6/BeepBeep-statistics">Terms of service</a>
+* <a href="0.0.0.0:5003">0.0.0.0:5003</a>
 
 License: <a href="https://www.apache.org/licenses/LICENSE-2.0.html">APLv2</a>
 
-<h1 id="beep-beep-statistics-webservice-default">Default</h1>
+<h1 id="beepbeep-challenge-default">Default</h1>
 
-## getAllStatisticsbyUserID
+## getChallenges
 
-<a id="opIdgetAllStatisticsbyUserID"></a>
+<a id="opIdgetChallenges"></a>
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X GET 0.0.0.0:5001/statistics/{user_id}/ \
+curl -X GET 0.0.0.0:5003/users/{runner_id}/challenges \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-GET 0.0.0.0:5001/statistics/{user_id}/ HTTP/1.1
-Host: 5001
+GET 0.0.0.0:5003/users/{runner_id}/challenges HTTP/1.1
+Host: 5003
 Accept: application/json
 
 ```
@@ -60,7 +58,7 @@ var headers = {
 };
 
 $.ajax({
-  url: '0.0.0.0:5001/statistics/{user_id}/',
+  url: '0.0.0.0:5003/users/{runner_id}/challenges',
   method: 'get',
 
   headers: headers,
@@ -79,7 +77,7 @@ const headers = {
 
 };
 
-fetch('0.0.0.0:5001/statistics/{user_id}/',
+fetch('0.0.0.0:5003/users/{runner_id}/challenges',
 {
   method: 'GET',
 
@@ -101,7 +99,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get '0.0.0.0:5001/statistics/{user_id}/',
+result = RestClient.get '0.0.0.0:5003/users/{runner_id}/challenges',
   params: {
   }, headers: headers
 
@@ -115,7 +113,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('0.0.0.0:5001/statistics/{user_id}/', params={
+r = requests.get('0.0.0.0:5003/users/{runner_id}/challenges', params={
 
 }, headers = headers)
 
@@ -124,7 +122,7 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("0.0.0.0:5001/statistics/{user_id}/");
+URL obj = new URL("0.0.0.0:5003/users/{runner_id}/challenges");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -156,7 +154,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "0.0.0.0:5001/statistics/{user_id}/", data)
+    req, err := http.NewRequest("GET", "0.0.0.0:5003/users/{runner_id}/challenges", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -166,70 +164,396 @@ func main() {
 
 ```
 
-`GET /statistics/{user_id}/`
+`GET /users/{runner_id}/challenges`
 
-By accessing this page and providing an existing user ID, you retrieve a set of 5 arrays about the temporal statistics of your runs for the following attributes, respectively: 'distance', 'average speed', 'average heartrate'. 'total elevation gain', 'elapsed time'.
+Get all the challenges of an user
 
-<h3 id="getallstatisticsbyuserid-parameters">Parameters</h3>
+<h3 id="getchallenges-parameters">Parameters</h3>
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|user_id|path|integer|true|The id of the user whose statistics you want to access|
+|runner_id|path|integer|true|The id of the user|
 
 > Example responses
 
 > 200 Response
 
 ```json
-{
-  "distance_array": [
-    0
-  ],
-  "average_speed_array": [
-    0
-  ],
-  "average_heart_rate_array": [
-    0
-  ],
-  "elevation_gain_array": [
-    0
-  ],
-  "elapsed_time_array": [
-    0
-  ]
-}
+[
+  {
+    "id": 0,
+    "run_challenged_id": 0,
+    "run_challenger_id": 0,
+    "runner_id": 0,
+    "start_date": 0,
+    "result": true
+  }
+]
 ```
 
-<h3 id="getallstatisticsbyuserid-responses">Responses</h3>
+<h3 id="getchallenges-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|All runs' statistics for the user whose ID was provided|[AllNumericalArrays](#schemaallnumericalarrays)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Invalid user ID supplied|None|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|User not found for the user ID supplied.|None|
-|503|[Service Unavailable](https://tools.ietf.org/html/rfc7231#section-6.6.4)|The 'dataservice' microservice on which this application depends on is not available. Please, try again later|None|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|A, possibly empty, list of challenges|Inline|
+|503|[Service Unavailable](https://tools.ietf.org/html/rfc7231#section-6.6.4)|Connection with Data Service failed|None|
 
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-None
+<h3 id="getchallenges-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[allOf]|false|none|none|
+
+*allOf*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|object|false|none|none|
+|»» id|integer|false|none|The ID of the Challenge|
+
+*and*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[Challenge](#schemachallenge)|false|none|none|
+|»» run_challenged_id|integer|true|none|ID of the challenged run|
+|»» run_challenger_id|integer|false|none|ID of the challenger run|
+|»» runner_id|integer|true|none|The id of the user who made this run|
+|»» start_date|integer(timestamp)|false|none|The timestamp when this challenge was made|
+|»» result|boolean|false|none|The result of the challenge that can been won or lost|
+
+<aside class="success">
+This operation does not require authentication
 </aside>
 
-## getSingleStatisticsbyUserID
+## createChallenge
 
-<a id="opIdgetSingleStatisticsbyUserID"></a>
+<a id="opIdcreateChallenge"></a>
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X GET 0.0.0.0:5001/statistics/{user_id}/{statistics_id}/ \
+curl -X POST 0.0.0.0:5003/users/{runner_id}/challenges \
+  -H 'Content-Type: application/json' \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-GET 0.0.0.0:5001/statistics/{user_id}/{statistics_id}/ HTTP/1.1
-Host: 5001
+POST 0.0.0.0:5003/users/{runner_id}/challenges HTTP/1.1
+Host: 5003
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: '0.0.0.0:5003/users/{runner_id}/challenges',
+  method: 'post',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "run_challenged_id": 0
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('0.0.0.0:5003/users/{runner_id}/challenges',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.post '0.0.0.0:5003/users/{runner_id}/challenges',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.post('0.0.0.0:5003/users/{runner_id}/challenges', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("0.0.0.0:5003/users/{runner_id}/challenges");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+        
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "0.0.0.0:5003/users/{runner_id}/challenges", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /users/{runner_id}/challenges`
+
+Create a new challenge
+
+> Body parameter
+
+```json
+{
+  "run_challenged_id": 0
+}
+```
+
+<h3 id="createchallenge-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|User has to provide its id and the run_challenged_id|
+|» run_challenged_id|body|integer|true|none|
+|runner_id|path|integer|true|The id of the user|
+
+> Example responses
+
+> 204 Response
+
+```json
+0
+```
+
+<h3 id="createchallenge-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|The challenge were added succesfully|integer|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Something went wrong trying to parse the request|[Error](#schemaerror)|
+|503|[Service Unavailable](https://tools.ietf.org/html/rfc7231#section-6.6.4)|Connection with Data Service failed|None|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## deleteUserChallenges
+
+<a id="opIddeleteUserChallenges"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE 0.0.0.0:5003/users/{runner_id}/challenges
+
+```
+
+```http
+DELETE 0.0.0.0:5003/users/{runner_id}/challenges HTTP/1.1
+Host: 5003
+
+```
+
+```javascript
+
+$.ajax({
+  url: '0.0.0.0:5003/users/{runner_id}/challenges',
+  method: 'delete',
+
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+fetch('0.0.0.0:5003/users/{runner_id}/challenges',
+{
+  method: 'DELETE'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+result = RestClient.delete '0.0.0.0:5003/users/{runner_id}/challenges',
+  params: {
+  }
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+
+r = requests.delete('0.0.0.0:5003/users/{runner_id}/challenges', params={
+
+)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("0.0.0.0:5003/users/{runner_id}/challenges");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("DELETE");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("DELETE", "0.0.0.0:5003/users/{runner_id}/challenges", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`DELETE /users/{runner_id}/challenges`
+
+Delete all the Challenges of a specified User
+
+<h3 id="deleteuserchallenges-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|runner_id|path|integer|true|The id of the user|
+
+<h3 id="deleteuserchallenges-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The challenges are succesfully deleted|None|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## getChallengeID
+
+<a id="opIdgetChallengeID"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET 0.0.0.0:5003/users/{runner_id}/challenges/{challenge_id} \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET 0.0.0.0:5003/users/{runner_id}/challenges/{challenge_id} HTTP/1.1
+Host: 5003
 Accept: application/json
 
 ```
@@ -241,7 +565,7 @@ var headers = {
 };
 
 $.ajax({
-  url: '0.0.0.0:5001/statistics/{user_id}/{statistics_id}/',
+  url: '0.0.0.0:5003/users/{runner_id}/challenges/{challenge_id}',
   method: 'get',
 
   headers: headers,
@@ -260,7 +584,7 @@ const headers = {
 
 };
 
-fetch('0.0.0.0:5001/statistics/{user_id}/{statistics_id}/',
+fetch('0.0.0.0:5003/users/{runner_id}/challenges/{challenge_id}',
 {
   method: 'GET',
 
@@ -282,7 +606,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get '0.0.0.0:5001/statistics/{user_id}/{statistics_id}/',
+result = RestClient.get '0.0.0.0:5003/users/{runner_id}/challenges/{challenge_id}',
   params: {
   }, headers: headers
 
@@ -296,7 +620,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('0.0.0.0:5001/statistics/{user_id}/{statistics_id}/', params={
+r = requests.get('0.0.0.0:5003/users/{runner_id}/challenges/{challenge_id}', params={
 
 }, headers = headers)
 
@@ -305,7 +629,7 @@ print r.json()
 ```
 
 ```java
-URL obj = new URL("0.0.0.0:5001/statistics/{user_id}/{statistics_id}/");
+URL obj = new URL("0.0.0.0:5003/users/{runner_id}/challenges/{challenge_id}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -337,7 +661,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "0.0.0.0:5001/statistics/{user_id}/{statistics_id}/", data)
+    req, err := http.NewRequest("GET", "0.0.0.0:5003/users/{runner_id}/challenges/{challenge_id}", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -347,16 +671,16 @@ func main() {
 
 ```
 
-`GET /statistics/{user_id}/{statistics_id}/`
+`GET /users/{runner_id}/challenges/{challenge_id}`
 
-By accessing this page and providing an existing user ID, you retrieve a set of 5 arrays about the temporal statistics of your runs for the following attributes, respectively: 'distance', 'average speed', 'average heartrate'. 'total elevation gain', 'elapsed time'.
+Get The challenge *challenge_id* of the user *runner_id*
 
-<h3 id="getsinglestatisticsbyuserid-parameters">Parameters</h3>
+<h3 id="getchallengeid-parameters">Parameters</h3>
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|user_id|path|integer|true|The id of the user whose statistics you want to access|
-|statistics_id|path|integer|true|Based on the statistics ID passed, one of the following arrays is returned: 1 = distance array; 2 = average speed array; 3 = average heartrate array ; 4 = total elevation gain array; 5 = elapsed time array.|
+|runner_id|path|integer|true|The id of the user|
+|challenge_id|path|integer|true|The id of the challenge|
 
 > Example responses
 
@@ -364,150 +688,229 @@ By accessing this page and providing an existing user ID, you retrieve a set of 
 
 ```json
 {
-  "distance_array": [
-    0
-  ],
-  "average_speed_array": [
-    0
-  ],
-  "average_heart_rate_array": [
-    0
-  ],
-  "elevation_gain_array": [
-    0
-  ],
-  "elapsed_time_array": [
-    0
-  ]
+  "id": 0,
+  "run_challenged_id": 0,
+  "run_challenger_id": 0,
+  "runner_id": 0,
+  "start_date": 0,
+  "result": true
 }
 ```
 
-<h3 id="getsinglestatisticsbyuserid-responses">Responses</h3>
+<h3 id="getchallengeid-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Runs' statistics of one single statistics type for the user whose ID was provided|[OneNumericalArray](#schemaonenumericalarray)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Invalid user ID supplied or invalid statistics ID supplied.|None|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|User not found for the user ID supplied.|None|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The challenge of the user|[ResponseChallenge](#schemaresponsechallenge)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|The specified resource was not found|[Error](#schemaerror)|
 
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-None
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## completeChallenge
+
+<a id="opIdcompleteChallenge"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X PUT 0.0.0.0:5003/users/{runner_id}/challenges/{challenge_id} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+PUT 0.0.0.0:5003/users/{runner_id}/challenges/{challenge_id} HTTP/1.1
+Host: 5003
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+var headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+$.ajax({
+  url: '0.0.0.0:5003/users/{runner_id}/challenges/{challenge_id}',
+  method: 'put',
+
+  headers: headers,
+  success: function(data) {
+    console.log(JSON.stringify(data));
+  }
+})
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "run_challenger_id": 0
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+
+};
+
+fetch('0.0.0.0:5003/users/{runner_id}/challenges/{challenge_id}',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.put '0.0.0.0:5003/users/{runner_id}/challenges/{challenge_id}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.put('0.0.0.0:5003/users/{runner_id}/challenges/{challenge_id}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("0.0.0.0:5003/users/{runner_id}/challenges/{challenge_id}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("PUT");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+        
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PUT", "0.0.0.0:5003/users/{runner_id}/challenges/{challenge_id}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`PUT /users/{runner_id}/challenges/{challenge_id}`
+
+Complete the challenge specied with the run challenger
+
+> Body parameter
+
+```json
+{
+  "run_challenger_id": 0
+}
+```
+
+<h3 id="completechallenge-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|The id of the run challenger|
+|» run_challenger_id|body|integer|true|none|
+|runner_id|path|integer|true|The id of the user|
+|challenge_id|path|integer|true|The id of the challenge|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": 0,
+  "run_challenged_id": 0,
+  "run_challenger_id": 0,
+  "runner_id": 0,
+  "start_date": 0,
+  "result": true
+}
+```
+
+<h3 id="completechallenge-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The challenge succesfully updated|[ResponseChallenge](#schemaresponsechallenge)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|The specified resource was not found|[Error](#schemaerror)|
+|503|[Service Unavailable](https://tools.ietf.org/html/rfc7231#section-6.6.4)|Connection with Data Service failed|None|
+
+<aside class="success">
+This operation does not require authentication
 </aside>
 
 # Schemas
 
-<h2 id="tocSnumericalarray">NumericalArray</h2>
+<h2 id="tocSchallenge">Challenge</h2>
 
-<a id="schemanumericalarray"></a>
-
-```json
-[
-  0
-]
-
-```
-
-### Properties
-
-*None*
-
-<h2 id="tocSdistancearray">DistanceArray</h2>
-
-<a id="schemadistancearray"></a>
-
-```json
-[
-  0
-]
-
-```
-
-### Properties
-
-*None*
-
-<h2 id="tocSaveragespeedarray">AverageSpeedArray</h2>
-
-<a id="schemaaveragespeedarray"></a>
-
-```json
-[
-  0
-]
-
-```
-
-### Properties
-
-*None*
-
-<h2 id="tocSaverageheartratearray">AverageHeartRateArray</h2>
-
-<a id="schemaaverageheartratearray"></a>
-
-```json
-[
-  0
-]
-
-```
-
-### Properties
-
-*None*
-
-<h2 id="tocSelevationgainarray">ElevationGainArray</h2>
-
-<a id="schemaelevationgainarray"></a>
-
-```json
-[
-  0
-]
-
-```
-
-### Properties
-
-*None*
-
-<h2 id="tocSelapsedtimearray">ElapsedTimeArray</h2>
-
-<a id="schemaelapsedtimearray"></a>
-
-```json
-[
-  0
-]
-
-```
-
-### Properties
-
-*None*
-
-<h2 id="tocSallnumericalarrays">AllNumericalArrays</h2>
-
-<a id="schemaallnumericalarrays"></a>
+<a id="schemachallenge"></a>
 
 ```json
 {
-  "distance_array": [
-    0
-  ],
-  "average_speed_array": [
-    0
-  ],
-  "average_heart_rate_array": [
-    0
-  ],
-  "elevation_gain_array": [
-    0
-  ],
-  "elapsed_time_array": [
-    0
-  ]
+  "run_challenged_id": 0,
+  "run_challenger_id": 0,
+  "runner_id": 0,
+  "start_date": 0,
+  "result": true
 }
 
 ```
@@ -516,33 +919,51 @@ None
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|distance_array|[DistanceArray](#schemadistancearray)|false|none|none|
-|average_speed_array|[AverageSpeedArray](#schemaaveragespeedarray)|false|none|none|
-|average_heart_rate_array|[AverageHeartRateArray](#schemaaverageheartratearray)|false|none|none|
-|elevation_gain_array|[ElevationGainArray](#schemaelevationgainarray)|false|none|none|
-|elapsed_time_array|[ElapsedTimeArray](#schemaelapsedtimearray)|false|none|none|
+|run_challenged_id|integer|true|none|ID of the challenged run|
+|run_challenger_id|integer|false|none|ID of the challenger run|
+|runner_id|integer|true|none|The id of the user who made this run|
+|start_date|integer(timestamp)|false|none|The timestamp when this challenge was made|
+|result|boolean|false|none|The result of the challenge that can been won or lost|
 
-<h2 id="tocSonenumericalarray">OneNumericalArray</h2>
+<h2 id="tocSresponsechallenge">ResponseChallenge</h2>
 
-<a id="schemaonenumericalarray"></a>
+<a id="schemaresponsechallenge"></a>
 
 ```json
 {
-  "distance_array": [
-    0
-  ],
-  "average_speed_array": [
-    0
-  ],
-  "average_heart_rate_array": [
-    0
-  ],
-  "elevation_gain_array": [
-    0
-  ],
-  "elapsed_time_array": [
-    0
-  ]
+  "id": 0,
+  "run_challenged_id": 0,
+  "run_challenger_id": 0,
+  "runner_id": 0,
+  "start_date": 0,
+  "result": true
+}
+
+```
+
+### Properties
+
+*allOf*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|object|false|none|none|
+|» id|integer|false|none|The ID of the Challenge|
+
+*and*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[Challenge](#schemachallenge)|false|none|none|
+
+<h2 id="tocSerror">Error</h2>
+
+<a id="schemaerror"></a>
+
+```json
+{
+  "response-code": 0,
+  "message": "string"
 }
 
 ```
@@ -551,9 +972,6 @@ None
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|distance_array|[DistanceArray](#schemadistancearray)|false|none|none|
-|average_speed_array|[AverageSpeedArray](#schemaaveragespeedarray)|false|none|none|
-|average_heart_rate_array|[AverageHeartRateArray](#schemaaverageheartratearray)|false|none|none|
-|elevation_gain_array|[ElevationGainArray](#schemaelevationgainarray)|false|none|none|
-|elapsed_time_array|[ElapsedTimeArray](#schemaelapsedtimearray)|false|none|none|
+|response-code|integer|true|none|The code of the HTTP response error|
+|message|string|true|none|Additional description about the error|
 
